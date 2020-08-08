@@ -11,6 +11,7 @@ Type=simple
 Restart=always
 RestartSec=3
 StandardOutput=null
+Environment=QuantarBridgeLogDir=/var/log/dvswitch
 WorkingDirectory=/opt/Quantar_Bridge
 ExecStartPre = /bin/sh -c 'echo "Starting Quantar_Bridge: [`date +%%T.%%3N`]" >> /var/log/netcheck'
 ExecStart=/opt/Quantar_Bridge/Quantar_Bridge /opt/Quantar_Bridge/Quantar_Bridge.ini
