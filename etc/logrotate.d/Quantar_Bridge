@@ -1,0 +1,21 @@
+/var/log/dvswitch/Quantar_Bridge.log
+{
+        daily
+        rotate 7
+        maxage 7
+        dateext
+        dateformat -%Y-%m-%d
+        extension .log
+        ifempty
+        create
+
+        firstaction
+        today=$(date +"%Y-%m-%d")
+        filename="/var/log/dvswitch/Quantar_Bridge-$today.log"
+        if [ -f "$filename" ]; then
+                mv /var/log/dvswitch/Quantar_Bridge-$today.log /var/log/dvswitch/Quantar_Bridge.log
+        fi
+        endscript
+
+}
+ 

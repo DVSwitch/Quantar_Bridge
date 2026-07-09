@@ -1,0 +1,23 @@
+[Unit]
+Description=Quantar_Bridge Service
+# Description=Place this file in /lib/systemd/system
+# Description=N4IRS 07/01/2024
+
+After=netcheck.service
+Requires=netcheck.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+StandardOutput=null
+WorkingDirectory=/opt/Quantar_Bridge
+Environment=QuantarBridgeLogDir=/var/log/dvswitch
+ExecStartPre = /usr/bin/sh -c 'echo "Starting Quantar_Bridge: [`date +%%T.%%3N`]" >> /var/log/netcheck'
+ExecStart=/opt/Quantar_Bridge/Quantar_Bridge /opt/Quantar_Bridge/Quantar_Bridge.ini
+ExecReload=/bin/kill -2 $MAINPID
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+
